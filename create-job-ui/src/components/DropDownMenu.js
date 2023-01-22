@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
 
-export const DropDownMenu = () => {
+export const DropDownMenu = ({selectedValue,setSelectedValue}) => {
 
-    const [selectedValue, setSelectedValue] = useState('');
+    // const [selectedValue, setSelectedValue] = useState('');
   const [options, setOptions] = useState(['Option 1', 'Option 2', 'Option 3']);
   const [newOption, setNewOption] = useState('');
 
@@ -22,7 +22,7 @@ export const DropDownMenu = () => {
     <div>
     <form onSubmit={handleSubmit}>
       <input type="text" value={newOption} onChange={e => setNewOption(e.target.value)} placeholder="Enter a new option" />
-      <button type="submit">Add Option</button>
+      <button type="submit" onClick={handleSubmit} >Add Option</button>
     </form>
     <select value={selectedValue} onChange={e => setSelectedValue(e.target.value)}>
       {options.map(option => (
