@@ -1,9 +1,9 @@
 import React,{useState} from 'react'
 
-export const DropDownMenu = ({selectedValue,setSelectedValue}) => {
+export const DropDownMenu = ({selectedValue,setSelectedValue,options,setOptions}) => {
 
     // const [selectedValue, setSelectedValue] = useState('');
-  const [options, setOptions] = useState(['Option 1', 'Option 2', 'Option 3']);
+  //const [options, setOptions] = useState(['Option 1', 'Option 2', 'Option 3']);
   const [newOption, setNewOption] = useState('');
 
   function handleSubmit(e) {

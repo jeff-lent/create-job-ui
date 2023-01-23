@@ -1,34 +1,12 @@
 import React,{useState} from 'react'
 
-export const ListOfOptions = ({items,setItems}) => {
-
-//     const [items, setItems] = useState([]);
-//     const [inputValue, setInputValue] = useState('');
-
-//     const handleInputChange = (event) => {
-//         setInputValue(event.target.value);
-//     }
-
-//     const handleAddClick = () => {
-//         setItems([...items, inputValue]);
-//         setInputValue('');
-//     }
-
-//   return (
-//     <div>
-//         <input value={inputValue} onChange={handleInputChange} />
-//         <button onClick={handleAddClick}>Add</button>
-//         <ul>
-//             {items.map((item, index) => <li key={index}>{item}</li>)}
-//         </ul>
-//     </div>
-//   )
+export const ListOfOptions = ({items,setItems,options,setOptions}) => {
 
 //const [items, setItems] = useState([]);
 const [selectedItem, setSelectedItem] = useState('');
 
-// const options = ["Option 1", "Option 2", "Option 3"];
-const [options, setOptions] = useState(['Select Option', 'Option 1', 'Option 2']);
+//const options = ["Option 1", "Option 2", "Option 3"];
+//const [options, setOptions] = useState(['Select Option', 'Option 1', 'Option 2']);
 const [newOption, setNewOption] = useState('');
 
 function handleSubmit(e) {
@@ -57,9 +35,9 @@ return (
       <button type="submit" onClick={handleSubmit} >Add Option</button>
     </form>
         <select value={selectedItem} onChange={handleSelectChange}>
-            {options.map((option, index) => <option key={index}>{option}</option>)}
+            { options && options.map((option, index) => <option key={index}>{option}</option>)}
         </select>
-        <button onClick={handleAddClick}>Add</button>
+        <button onClick={handleAddClick}>Add to list</button>
         <ul>
             {items.map((item, index) => <li key={index}>{item}</li>)}
         </ul>
