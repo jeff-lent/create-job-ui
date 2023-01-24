@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import { Calander } from '../components/Calander';
-import { DropDownMenu } from '../components/DropDownMenu'
-import { DropDownSearch } from '../components/DropDownSearch';
-import { ListOfCheckboxes } from '../components/ListOfCheckboxes';
-import { ListOfOptions } from '../components/ListOfOptions';
+
 import { MultiSelectDropDown } from '../components/MultiSelectDropDown';
 import { SimpleDropDown } from '../components/SimpleDropDown';
 import { Textfeild } from '../components/Textfeild'
@@ -13,46 +10,33 @@ export const CreateJobPage = () => {
   const [jobTitle, setJobTitle] = useState('');
   const [description, setDescription] = useState('');
   const [department, setDepartment] = useState('');
-  const [responsibilities, setResponsibilities] = useState([]);
   const [degrees, setDegrees] = useState([]);
   const [employmentCategories, setEmploymentCategories] = useState([]);
-  const [genders, setGenders] = useState([]);
+  const [genders, setGenders] = useState('');
   const [location, setLocation] = useState('');
   const [softskills, setSoftskills] = useState([]);
   const [technicalskills, setTechnicalskills] = useState([]);
   const [experienceLevel, setExperienceLevel] = useState([]);
   const [perksAndBenefits, setPerksAndBenefits] = useState([]);
   const [travelling, setTravelling] = useState([]);
-  const [vacancies, setVacancies] = useState('');
+  const [vacancies, setVacancies] = useState();
   const [closingDate, setClosingDate] = useState(null);
+  const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
 
+  const experienceLevelOptions = ['1', '2', '3', '4', '5',"6" ,"7" ,"8" ,"9" ,"10" ,"11" ,"12" ,"13" ,"14" ,"15" ,"16" ,"17" ,"18" ,"19" ,"20" ,"21" ,"22" ,"23" ,"24" ,"25"];
+  const genderOptions = ['MALE', 'FEMALE', 'BOTH_MALE_FEMALE', "ALL"];
+  const travellingOptions = ['YES', 'NO', 'MAYBE '];
 
-  // const [departmentOptions, setDepartmentOptions] = useState(['Cloud Native Development', 'Data Engineering']);
-  //const [responsibilityOption, setResponsibilityOption] = useState(['backend development', 'databases']);
-  //const [degreeOption, setDegreeOption] = useState(['B.E - CIS', 'BSCS']);
-  //const [softskillsOption, setSoftskillsOption] = useState(['soft skill A', 'soft skill B']);
-  //const [technicalskillsOption, setTechnicalskillsOption] = useState(['technical skill A', 'technical skill B']);
-  //const [benifitsOptions, setBenifitsOptions] = useState(['Benefit A', 'Benefit B']);
-
-
-  //const[responsibilityOption,setResponsibilityOption] = useState([]);
-const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
-
-
-
-  const experienceLevelOptions = ['1', '2', '3', '4', '5'];
-  const genderOptions = ['male', 'female', 'both male & female'];
-  const travellingOptions = ['yes', 'no', 'may-be '];
-
-  let responsibilityOptions = ['Contribute in all phases of the development lifecycle',
+  let responsibilityOptions = 
+  ['Contribute in all phases of the development lifecycle',
   'Write well designed, testable, efficient code',
   'Ensure designs are in compliance with specifications']
   
-  let departmentOptions =  ['Cloud Native Development', 'Data Engineering'];
+  let departmentOptions =  ['CLOUD_NATIVE_ENGINEERING', 'DATA_ENGINEERING'];
 
   let degreeOptions = ['B.E - CIS', 'BSCS'];
 
-  let employmentCategoriesOptions = ['part time','full time','contract','online','onsite'];
+  let employmentCategoriesOptions = ['PART_TIME','FULL_TIME','CONTRACT_BASE','ONLINE','ONSITE'];
 
   let softSkillsOptions = ['soft skill A', 'soft skill B'];
 
@@ -62,23 +46,67 @@ const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
 
   let locationOptions=['karachi','lahore','islamabad']
 
-  //console.log(department);
+  const handleSubmit = (event) =>{
+    
+    event.preventDefault();
+
+    
+    let requestData = {
+      "title":jobTitle,
+      "department" :department,
+      "employementCategory":  employmentCategories[0], // ["FULL_TIME","ONLINE"],
+      "gender":  genders , //["MALE","FEMALE"],
+      "traveling": travelling,
+      "location": location,
+      "softSkills":  softskills[0].map(ss=>{return {softSkill:ss} }), 
+      "technicalSkills": technicalskills[0].map(ts=>{return{technicalSkill:ts}}) ,
+      "closeDate": closingDate, //"2023-01-30"
+      "description": description,
+      "responsibilitiess": selectedResponsibilites[0].map(rs=>{return{responsibility:rs}}), 
+      "educations": degrees[0].map(edu=>{return{education:edu}}) ,
+      "benefitPerkss": perksAndBenefits[0].map(pb =>{return{benefitPerks:pb}}),
+      "experienceLevel":experienceLevel,
+      "vacancyCount":vacancies
+    }
+    
+
+    fetch(`http://localhost:8080/job/post`,  {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify( requestData )
+    }
+    ,{
+      mode: 'cors'
+    }
+     )
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+          alert("sucessful");
+      })
+      .catch((err)=>{
+          // setError("Server is busy or crediential is invalid");
+    });
+
+
+  }
 
   return (
     <div className='mainContainer'>
       <div className="create-job-page" ><h1>Create Job Page</h1>
-        <form>
-          <h4>job title</h4>
-          <Textfeild inputValue={jobTitle} setInputValue={setJobTitle} labelText="title" placeholderText="enter job title" ></Textfeild>
-          <h4>job description</h4>
-          <Textfeild inputValue={description} setInputValue={setDescription} placeholderText="enter job description" ></Textfeild>
-          <br></br>
-          <h4>Department</h4>
-          {/* <DropDownMenu selectedValue={department} setSelectedValue={setDepartment} options={departmentOptions} setOptions={setDepartmentOptions} ></DropDownMenu> */}
+        <form onSubmit={handleSubmit} >
+        <h4>job title</h4>
+        <Textfeild inputValue={jobTitle} setInputValue={setJobTitle} labelText="title" placeholderText="enter job title" ></Textfeild>
+        <h4>job description</h4>
+        <Textfeild inputValue={description} setInputValue={setDescription} placeholderText="enter job description" ></Textfeild>
+        <br></br>
+        <h4>Department</h4>
 
-          <SimpleDropDown selectedOption={department} setSelectedOption={setDepartment} options={departmentOptions}  ></SimpleDropDown>
+        <SimpleDropDown title="Department" selectedOption={department} setSelectedOption={setDepartment} options={departmentOptions}  ></SimpleDropDown>
 
-          <h4>Responsibilities</h4>
+        <h4>Responsibilities</h4>
         <MultiSelectDropDown fetchedOptions={responsibilityOptions} selected={selectedResponsibilites} setSelected={setSelectedResponsibilities}  ></MultiSelectDropDown>
         
         <h4>Degrees/Education</h4>
@@ -106,45 +134,12 @@ const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
 
         <br></br>
         <h4>location</h4>
-        {/* <DropDownMenu selectedValue={location} setSelectedValue={setLocation} ></DropDownMenu> */}
 
-        {/* <DropDownSearch selectedOption={location} setSelectedOption={setLocation} ></DropDownSearch> */}
-
-        <SimpleDropDown selectedOption={location} setSelectedOption={setLocation} options={locationOptions}  ></SimpleDropDown>
-
-
-        </form>
-
-        {/* <button onClick={submitFrom}>submit</button> */}
-        <br></br>
-        {/* <h4>Responsibilities</h4>
-        <ListOfOptions items={responsibilities} setItems={setResponsibilities} options={responsibilityOption} setOptions={setResponsibilityOption}></ListOfOptions>
-        <br></br> */}
-
-        
-       
-        {/* <ListOfOptions items={degrees} setItems={setDegrees} options={degreeOption} setOptions={setDegreeOption} ></ListOfOptions> */}
-        <br></br>
-        {/* <h4>Employment Category</h4> */}
-        {/* <ListOfCheckboxes selectedOptions={employmentCategories} setSelectedOptions={setEmploymentCategories} ></ListOfCheckboxes> */}
-        <br></br>
-        {/* <br></br>
-        <h4>Soft Skills</h4> */}
-        {/* <ListOfOptions items={softskills} setItems={setSoftskills} setOptions={setSoftskillsOption} options={softskillsOption} ></ListOfOptions> */}
-
-        {/* <br></br>
-        <h4>Technical Skills</h4> */}
-        {/* <ListOfOptions items={technicalskills} setItems={setTechnicalskills} setOptions={setTechnicalskillsOption} options={technicalskillsOption}  ></ListOfOptions> */}
-
-        {/* <br></br>
-        <h4>location</h4> */}
-        {/* <DropDownMenu selectedValue={location} setSelectedValue={setLocation} ></DropDownMenu> */}
-
-        {/* <DropDownSearch selectedOption={location} setSelectedOption={setLocation} ></DropDownSearch> */}
+        <SimpleDropDown title="Location" selectedOption={location} setSelectedOption={setLocation} options={locationOptions}  ></SimpleDropDown>
 
         <br></br>
         <h4>Experience</h4>
-        <SimpleDropDown selectedOption={experienceLevel} setSelectedOption={setExperienceLevel} options={experienceLevelOptions} ></SimpleDropDown>
+        <SimpleDropDown title="Experience" selectedOption={experienceLevel} setSelectedOption={setExperienceLevel} options={experienceLevelOptions} ></SimpleDropDown>
 
         <br></br>
         <h4>No# Vacancies</h4>
@@ -153,19 +148,19 @@ const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
 
         <br></br>
         <h4>Gender</h4>
-        <SimpleDropDown selectedOption={genders} setSelectedOption={setGenders} options={genderOptions}></SimpleDropDown>
-
-        {/* <br></br>
-        <h4>Perks and Benifits</h4>
-        <ListOfOptions items={perksAndBenefits} setItems={setPerksAndBenefits} options={benifitsOptions} setOptions={setBenifitsOptions}  ></ListOfOptions> */}
+        <SimpleDropDown title="Gender" selectedOption={genders} setSelectedOption={setGenders} options={genderOptions}></SimpleDropDown>
 
         <br></br>
         <h4>Requires Travelling</h4>
-        <SimpleDropDown selectedOption={travelling} setSelectedOption={setTravelling} options={travellingOptions} ></SimpleDropDown>
+        <SimpleDropDown title="Yes" selectedOption={travelling} setSelectedOption={setTravelling} options={travellingOptions} ></SimpleDropDown>
 
         <br></br>
         <h4>Closing date</h4>
-        <Calander selectedDate={closingDate} setSelectedDate={setClosingDate} ></Calander>
+        <Calander selectedDate={closingDate}  setSelectedDate={setClosingDate} ></Calander>
+
+        <button>SUBMIT</button>
+      </form>
+
 
       </div>
     </div>
