@@ -69,7 +69,7 @@ const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
       <div className="create-job-page" ><h1>Create Job Page</h1>
         <form>
           <h4>job title</h4>
-          <Textfeild inputValue={jobTitle} setInputValue={setJobTitle} labelText="title" placeholderText="enter job title" ></Textfeild>
+          <Textfeild  data-testid="title-input"  inputValue={jobTitle} setInputValue={setJobTitle} labelText="title" placeholderText="enter job title"></Textfeild>
           <h4>job description</h4>
           <Textfeild inputValue={description} setInputValue={setDescription} placeholderText="enter job description" ></Textfeild>
           <br></br>
