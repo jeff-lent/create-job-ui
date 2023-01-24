@@ -5,7 +5,7 @@ import { CreateJobPage } from './pages/CreateJobPage';
 function App() {
   return (
     <div className="App">
-      hello world
+     
       <CreateJobPage>
         
       </CreateJobPage>

@@ -65,52 +65,56 @@ const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
   //console.log(department);
 
   return (
+   
     <div className='mainContainer'>
-      <div className="create-job-page" ><h1>Create Job Page</h1>
+      <div className="create-job-page" > <h1 className='heading'>Create Job Page</h1>
         <form>
-          <h4>job title</h4>
-          <Textfeild inputValue={jobTitle} setInputValue={setJobTitle} labelText="title" placeholderText="enter job title" ></Textfeild>
-          <h4>job description</h4>
+          <h4 className='heading2'>Job Title</h4>
+        
+          <Textfeild className="enterjobtitle" inputValue={jobTitle} setInputValue={setJobTitle} labelText="title" placeholderText="enter job title" ></Textfeild>
+          <h4 className='heading3'>Job Description</h4>
           <Textfeild inputValue={description} setInputValue={setDescription} placeholderText="enter job description" ></Textfeild>
-          <br></br>
-          <h4>Department</h4>
+       
+          <h4 className='heading4'>Department</h4>
           {/* <DropDownMenu selectedValue={department} setSelectedValue={setDepartment} options={departmentOptions} setOptions={setDepartmentOptions} ></DropDownMenu> */}
+<div className="dropdown">
+          <SimpleDropDown selectedOption={department} setSelectedOption={setDepartment} options={departmentOptions}  ></SimpleDropDown></div>
+          
+          <h4 className='heading5'>Responsibilities</h4>
+          <div className="responsibilities">
+        <MultiSelectDropDown fetchedOptions={responsibilityOptions} selected={selectedResponsibilites} setSelected={setSelectedResponsibilities}  ></MultiSelectDropDown></div>
+       
+        <h4 className='heading6'>Degrees/Education</h4>
+        <div className="education">
+        <MultiSelectDropDown fetchedOptions={degreeOptions} selected={degrees} setSelected={setDegrees}  ></MultiSelectDropDown></div>
 
-          <SimpleDropDown selectedOption={department} setSelectedOption={setDepartment} options={departmentOptions}  ></SimpleDropDown>
 
-          <h4>Responsibilities</h4>
-        <MultiSelectDropDown fetchedOptions={responsibilityOptions} selected={selectedResponsibilites} setSelected={setSelectedResponsibilities}  ></MultiSelectDropDown>
+        <h4 className='heading7'>Employment Category</h4>
+        <div className="employmentcategory">
+        <MultiSelectDropDown fetchedOptions={employmentCategoriesOptions} selected={employmentCategories} setSelected={setEmploymentCategories}></MultiSelectDropDown></div>
+
+       
+        <h4 className='heading8'>Soft Skills</h4>
+        <div className="softskills">
+        <MultiSelectDropDown fetchedOptions={softSkillsOptions} selected={softskills} setSelected={setSoftskills} > </MultiSelectDropDown></div>
+
+      
+        <h4 className='heading9'>Technical Skills</h4>
+        <div className="technicalskills">
+        <MultiSelectDropDown fetchedOptions={technicalskillsOptions} selected={technicalskills} setSelected={setTechnicalskills} > </MultiSelectDropDown></div>
         
-        <h4>Degrees/Education</h4>
-        <MultiSelectDropDown fetchedOptions={degreeOptions} selected={degrees} setSelected={setDegrees}  ></MultiSelectDropDown>
+        <h4 className='heading10'>Perks and Benifits</h4>
+        <div className="perksandbenifits">
+        <MultiSelectDropDown fetchedOptions={benefitsAndPerksOptions} selected={perksAndBenefits} setSelected={setPerksAndBenefits} ></MultiSelectDropDown></div>
 
-        <br></br>
-        <h4>Employment Category</h4>
-
-        <MultiSelectDropDown fetchedOptions={employmentCategoriesOptions} selected={employmentCategories} setSelected={setEmploymentCategories}   ></MultiSelectDropDown>
-
-        <br></br>
-        <h4>Soft Skills</h4>
-
-        <MultiSelectDropDown fetchedOptions={softSkillsOptions} selected={softskills} setSelected={setSoftskills} > </MultiSelectDropDown>
-
-        <br></br>
-        <h4>Technical Skills</h4>
-
-        <MultiSelectDropDown fetchedOptions={technicalskillsOptions} selected={technicalskills} setSelected={setTechnicalskills} > </MultiSelectDropDown>
         
-        <br></br>
-        <h4>Perks and Benifits</h4>
-
-        <MultiSelectDropDown fetchedOptions={benefitsAndPerksOptions} selected={perksAndBenefits} setSelected={setPerksAndBenefits} ></MultiSelectDropDown>
-
-        <br></br>
-        <h4>location</h4>
+        <h4 className='heading11'>location</h4>
+        <div className="Location">
         {/* <DropDownMenu selectedValue={location} setSelectedValue={setLocation} ></DropDownMenu> */}
 
         {/* <DropDownSearch selectedOption={location} setSelectedOption={setLocation} ></DropDownSearch> */}
 
-        <SimpleDropDown selectedOption={location} setSelectedOption={setLocation} options={locationOptions}  ></SimpleDropDown>
+        <SimpleDropDown selectedOption={location} setSelectedOption={setLocation} options={locationOptions}  ></SimpleDropDown></div>
 
 
         </form>

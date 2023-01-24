@@ -1,14 +1,144 @@
 .create-job-page{
-    padding: 10;
-    border: 5px solid black;
-    padding: 50px 50px;
-    align-items: center;
-    text-align: center;
-    background-color: antiquewhite;
-    width:50vw;
-
+    background-color: rgb(255, 255, 255);
+    padding-left: 210px;
+    padding-top: 20px;
+    padding-right: 210px;
+    margin-top: 25px;
 }
 .mainContainer{
+    background-color: #f4f4ff;
     display: flex;
     justify-content: center;
+}
+h4.heading2 {
+    font-family: sans-serif;
+    font-size: 25px;
+}
+.enterjobtitle{
+    width: 200px;
+    border-radius: 5px;
+    padding-left: 10px;
+    height: 33px;
+    position: relative;
+    top: -28px;
+}
+.dropdown select{
+    width: 245px;
+    position: relative;
+    height: 30px;
+    border-radius: 4px;
+    top: -20px;
+    padding-left: 3px;
+    border-style: solid;
+    border-color: #e7e7e7;
+    background-color: #ffffff00;
+}
+h4.heading3{
+    font-size: 25px;
+    font-family: sans-serif;
+}
+h4.heading4{
+    font-size: 25px;
+    position: relative;
+    font-family: sans-serif;
+    top: 5px;
+}
+form {
+
+    position: relative;
+    left: -136px;}
+
+.responsibilities {
+    position: relative;
+    top: -147px;
+    right: -314px;
+    width: 268px;
+}
+h4.heading5 {
+    font-size: 25px;
+    top: -123px;
+    left: 313px;
+    font-family: sans-serif;
+    position: relative;
+}
+
+h4.heading6 {
+            font-size: 25px;
+            top: -154px;
+            position: relative;
+            font-family: sans-serif;
+}
+.education {
+    top: -180px;
+    position: relative;
+    width: 245px;   
+}
+h4.heading7 {
+    font-size: 25px;
+    position: relative;
+    top: -281px;
+    left: 307px;
+    font-family: sans-serif;
+
+}
+.employmentcategory{
+    position: relative;
+    top: -308px;
+    right: -308px;
+    width: 278px;
+}
+h4.heading8{
+    font-size: 25px;
+    top: -312px;
+    position: relative;
+    font-family: sans-serif;
+}
+h4.heading9 {
+    font-size: 25px;
+    position: relative;
+    top: -440px;
+    left: 307px;
+    font-family: sans-serif;
+}
+.softskills{
+    position: relative;
+    top: -338px;
+    right: -308px;
+    width: 278px;
+
+}
+.technicalskills{
+    top: -465px;
+    position: relative;
+    width: 245px;
+
+}
+h4.heading10 {
+    font-size: 25px;
+    top: -473px;
+    position: relative;
+    font-family: sans-serif;
+}
+.perksandbenifits{
+    position: relative;
+    top: -494px;
+    width: 245px;
+}
+h4.heading11 {
+    font-size: 25px;
+    position: relative;
+    top: -599px;
+    left: 307px;
+    font-family: sans-serif;
+}
+.Location select {
+    position: relative;
+    top: -622px;
+    right: -308px;
+    width: 279px;
+    height: 34px;
+    border-style: solid;
+    border-color: #0000002b;
+    background-color: transparent;
+    border-radius: 5px;
 }
