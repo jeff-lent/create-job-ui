@@ -1,12 +1,6 @@
 //import { render, screen,fireEvent } from '@testing-library/react';
-import App from './App';
-//import { Textfeild } from './components/Textfeild';
+// import App from './App';
 
-// test('renders learn react link', () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
 
 
 import React from 'react';
@@ -27,14 +21,6 @@ describe('input feild test', () => {
   });  
 });
 
-// describe('dropdown feild test',()=>{
-//   it('checking dropdown', () => {
-//    render(<MultiSelectDropDown fetchedOptions={['option1','option2']}  ></MultiSelectDropDown>);
-//     const select = getByLabelText(cod,'Responsibilities');
-//     fireEvent.change(select,{target:{value:'option2'}});
-//     expect(select.value).toBe('option2');
-//   });
-// })
 
 // multiselect dropdown
 describe('Multiselect DropdownField test', () => {
@@ -71,37 +57,6 @@ describe('Multiselect DropdownField test', () => {
 
 }); 
 
-
-
- 
-// describe('SimpleDropDown test', () => {
-  
-//   it('hello', () => {
-//     render(<SimpleDropDown selectedOption={['Cloud Native Development', 'Data Engineering']}  ></SimpleDropDown>);
-//     const select = screen.getByDisplayValue("Cloud Native Development");
-//     expect(select).toContainElement(screen.getByText("Cloud Native Development"));
-//     expect(select).toContainElement(screen.getByText("Data Engineering"));
-//   });
-
-// });
-
-
-
-
-// test('input fields correctly update the state', () => {
-//   const { container } = render(<CreateJobPage />);
-//   const titleInput = getByTestId("title-input");
-//   fireEvent.change(titleInput, { target: { value: 'Software Engineer' } });
-//   expect(titleInput.value).toBe('Software Engineer');
-//   expect(titleInput.value).toBe(jobTitle);
-  
-//   const descriptionInput = getByTestId(container, 'description-input');
-//   fireEvent.change(descriptionInput, { target: { value: 'Develop and maintain software applications' } });
-//   expect(descriptionInput.value).toBe('Develop and maintain software applications');
-//   expect(descriptionInput.value).toBe(description);
-  
-
-// });
 
 
 
