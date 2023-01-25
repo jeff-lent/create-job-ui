@@ -67,56 +67,71 @@ const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
   return (
    
     <div className='mainContainer'>
-      <div className="create-job-page" > <h1 className='heading'>Create Job Page</h1>
+      <div className="create-job-page" > <h1 className='heading'>CREATE JOB PAGE</h1>
         <form>
-          <h4 className='heading2'>Job Title</h4>
         
-          <Textfeild className="enterjobtitle" inputValue={jobTitle} setInputValue={setJobTitle} labelText="title" placeholderText="enter job title" ></Textfeild>
+        <div className='enterjobtitle'>
+          <h4 className='heading2'>Job Title</h4>
+          <Textfeild  inputValue={jobTitle} setInputValue={setJobTitle} labelText="title" placeholderText="enter job title" ></Textfeild></div>
+          <div className='jobdescription'>
           <h4 className='heading3'>Job Description</h4>
+         
           <Textfeild inputValue={description} setInputValue={setDescription} placeholderText="enter job description" ></Textfeild>
-       
+       </div>
+       <br></br>
+
+       <div className='div2'>
+       <div className="dropdown">
           <h4 className='heading4'>Department</h4>
           {/* <DropDownMenu selectedValue={department} setSelectedValue={setDepartment} options={departmentOptions} setOptions={setDepartmentOptions} ></DropDownMenu> */}
-<div className="dropdown">
+        
           <SimpleDropDown selectedOption={department} setSelectedOption={setDepartment} options={departmentOptions}  ></SimpleDropDown></div>
-          
-          <h4 className='heading5'>Responsibilities</h4>
           <div className="responsibilities">
+          <h4 className='heading5'>Responsibilities</h4>
+          
         <MultiSelectDropDown fetchedOptions={responsibilityOptions} selected={selectedResponsibilites} setSelected={setSelectedResponsibilities}  ></MultiSelectDropDown></div>
-       
-        <h4 className='heading6'>Degrees/Education</h4>
-        <div className="education">
+       </div>
+        
+       <div className='div3'>
+       <div className="education">
+       <h4 className='heading6'>Degrees/Education</h4>
+      
         <MultiSelectDropDown fetchedOptions={degreeOptions} selected={degrees} setSelected={setDegrees}  ></MultiSelectDropDown></div>
 
-
-        <h4 className='heading7'>Employment Category</h4>
         <div className="employmentcategory">
+        <h4 className='heading7'>Employment Category</h4>
+        
         <MultiSelectDropDown fetchedOptions={employmentCategoriesOptions} selected={employmentCategories} setSelected={setEmploymentCategories}></MultiSelectDropDown></div>
-
-       
-        <h4 className='heading8'>Soft Skills</h4>
+        </div>
+        <br></br>
+        <div className='div4'>
         <div className="softskills">
+        <h4 className='heading8'>Soft Skills</h4>
+     
         <MultiSelectDropDown fetchedOptions={softSkillsOptions} selected={softskills} setSelected={setSoftskills} > </MultiSelectDropDown></div>
 
-      
-        <h4 className='heading9'>Technical Skills</h4>
         <div className="technicalskills">
+        <h4 className='heading9'>Technical Skills</h4>
+       
         <MultiSelectDropDown fetchedOptions={technicalskillsOptions} selected={technicalskills} setSelected={setTechnicalskills} > </MultiSelectDropDown></div>
-        
-        <h4 className='heading10'>Perks and Benifits</h4>
+        </div>
+        <br></br>
+        <div className='div5'>
         <div className="perksandbenifits">
+        <h4 className='heading10'>Perks and Benifits</h4>
+       
         <MultiSelectDropDown fetchedOptions={benefitsAndPerksOptions} selected={perksAndBenefits} setSelected={setPerksAndBenefits} ></MultiSelectDropDown></div>
 
-        
-        <h4 className='heading11'>location</h4>
         <div className="Location">
+        <h4 className='heading11'>Location</h4>
+       
         {/* <DropDownMenu selectedValue={location} setSelectedValue={setLocation} ></DropDownMenu> */}
 
         {/* <DropDownSearch selectedOption={location} setSelectedOption={setLocation} ></DropDownSearch> */}
 
         <SimpleDropDown selectedOption={location} setSelectedOption={setLocation} options={locationOptions}  ></SimpleDropDown></div>
 
-
+</div>
         </form>
 
         {/* <button onClick={submitFrom}>submit</button> */}
@@ -147,31 +162,47 @@ const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
         {/* <DropDownSearch selectedOption={location} setSelectedOption={setLocation} ></DropDownSearch> */}
 
         <br></br>
-        <h4>Experience</h4>
-        <SimpleDropDown selectedOption={experienceLevel} setSelectedOption={setExperienceLevel} options={experienceLevelOptions} ></SimpleDropDown>
+      
+        <section className='form2'>
+          <div className='div6' >
+          <div className="experience">
+        <h4 className='heading12'>Experience</h4>
+ 
+        <SimpleDropDown selectedOption={experienceLevel} setSelectedOption={setExperienceLevel} options={experienceLevelOptions} ></SimpleDropDown></div>
+        <div className="vacancies">
+       
+        <h4 className='heading13'>No# Vacancies</h4>
+        
+        <Textfeild inputValue={vacancies} setInputValue={setVacancies} labelText="title" placeholderText="enter the number of vacancies" ></Textfeild></div>
 
-        <br></br>
-        <h4>No# Vacancies</h4>
-        <Textfeild inputValue={vacancies} setInputValue={setVacancies} labelText="title" placeholderText="enter the number of vacancies" ></Textfeild>
-
-
-        <br></br>
-        <h4>Gender</h4>
-        <SimpleDropDown selectedOption={genders} setSelectedOption={setGenders} options={genderOptions}></SimpleDropDown>
+</div>
+<div className='div7' >
+<div className="gender">
+        <h4 className='heading14'>Gender</h4>
+       
+        <SimpleDropDown selectedOption={genders} setSelectedOption={setGenders} options={genderOptions}></SimpleDropDown></div>
 
         {/* <br></br>
         <h4>Perks and Benifits</h4>
         <ListOfOptions items={perksAndBenefits} setItems={setPerksAndBenefits} options={benifitsOptions} setOptions={setBenifitsOptions}  ></ListOfOptions> */}
+  <div className="requirestravelling">
+      
+        <h4 className='heading15'>Requires Travelling</h4>
+      
+        <SimpleDropDown selectedOption={travelling} setSelectedOption={setTravelling} options={travellingOptions} ></SimpleDropDown></div>
 
-        <br></br>
-        <h4>Requires Travelling</h4>
-        <SimpleDropDown selectedOption={travelling} setSelectedOption={setTravelling} options={travellingOptions} ></SimpleDropDown>
-
-        <br></br>
-        <h4>Closing date</h4>
-        <Calander selectedDate={closingDate} setSelectedDate={setClosingDate} ></Calander>
+        </div>
+       
+        <div className="closingdate">
+        <h4 className='heading16'>Closing date</h4>
+        <Calander selectedDate={closingDate} setSelectedDate={setClosingDate} ></Calander></div>
+</section>
+<button className='button' type="button"><a href='#'>
+ SUBMIT</a>
+</button>
 
       </div>
+      
     </div>
   )
 }

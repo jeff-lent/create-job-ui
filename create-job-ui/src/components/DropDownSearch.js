@@ -22,7 +22,7 @@ return (
         value={selectedOption}
         onChange={handleSelectChange}
       >
-        <option value="" disabled>Select an option</option>
+        <option className='option' value="" disabled>Select an option</option>
         {options
             .filter(option => option.toLowerCase().includes(searchInput.toLowerCase()))
             .map((option, index) => (
