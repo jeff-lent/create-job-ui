@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import { Calander } from '../components/Calander';
-import { DropDownMenu } from '../components/DropDownMenu'
-import { DropDownSearch } from '../components/DropDownSearch';
-import { ListOfCheckboxes } from '../components/ListOfCheckboxes';
-import { ListOfOptions } from '../components/ListOfOptions';
+
 import { MultiSelectDropDown } from '../components/MultiSelectDropDown';
 import { SimpleDropDown } from '../components/SimpleDropDown';
 import { Textfeild } from '../components/Textfeild'
@@ -13,48 +10,35 @@ export const CreateJobPage = () => {
   const [jobTitle, setJobTitle] = useState('');
   const [description, setDescription] = useState('');
   const [department, setDepartment] = useState('');
-  const [responsibilities, setResponsibilities] = useState([]);
   const [degrees, setDegrees] = useState([]);
   const [employmentCategories, setEmploymentCategories] = useState([]);
-  const [genders, setGenders] = useState([]);
+  const [genders, setGenders] = useState('');
   const [location, setLocation] = useState('');
   const [softskills, setSoftskills] = useState([]);
   const [technicalskills, setTechnicalskills] = useState([]);
   const [experienceLevel, setExperienceLevel] = useState([]);
   const [perksAndBenefits, setPerksAndBenefits] = useState([]);
   const [travelling, setTravelling] = useState([]);
-  const [vacancies, setVacancies] = useState('');
+  const [vacancies, setVacancies] = useState();
   const [closingDate, setClosingDate] = useState(null);
+  const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
 
+  const experienceLevelOptions = ['1', '2', '3', '4', '5',"6" ,"7" ,"8" ,"9" ,"10" ,"11" ,"12" ,"13" ,"14" ,"15" ,"16" ,"17" ,"18" ,"19" ,"20" ,"21" ,"22" ,"23" ,"24" ,"25"];
+  const genderOptions = ['MALE', 'FEMALE', 'BOTH_MALE_FEMALE', "ALL"];
+  const travellingOptions = ['YES', 'NO', 'MAYBE '];
 
-  // const [departmentOptions, setDepartmentOptions] = useState(['Cloud Native Development', 'Data Engineering']);
-  //const [responsibilityOption, setResponsibilityOption] = useState(['backend development', 'databases']);
-  //const [degreeOption, setDegreeOption] = useState(['B.E - CIS', 'BSCS']);
-  //const [softskillsOption, setSoftskillsOption] = useState(['soft skill A', 'soft skill B']);
-  //const [technicalskillsOption, setTechnicalskillsOption] = useState(['technical skill A', 'technical skill B']);
-  //const [benifitsOptions, setBenifitsOptions] = useState(['Benefit A', 'Benefit B']);
-
-
-  //const[responsibilityOption,setResponsibilityOption] = useState([]);
-const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
-
-
-
-  const experienceLevelOptions = ['1', '2', '3', '4', '5'];
-  const genderOptions = ['male', 'female', 'both male & female'];
-  const travellingOptions = ['yes', 'no', 'may-be '];
-
-  let responsibilityOptions = ['Contribute in all phases of the development lifecycle',
+  let responsibilityOptions = 
+  ['Contribute in all phases of the development lifecycle',
   'Write well designed, testable, efficient code',
   'Ensure designs are in compliance with specifications']
   
-  let departmentOptions =  ['Cloud Native Development', 'Data Engineering'];
+  let departmentOptions =  ['CLOUD_NATIVE_ENGINEERING', 'DATA_ENGINEERING'];
 
   let degreeOptions = ['B.E - CIS', 'BSCS'];
 
-  let employmentCategoriesOptions = ['part time','full time','contract','online','onsite'];
+  let employmentCategoriesOptions = ['PART_TIME','FULL_TIME','CONTRACT_BASE','ONLINE','ONSITE'];
 
-  let softSkillsOptions = ['soft skill A', 'soft skill B'];
+  let softSkillsOptions = ['JAVA', 'JUNIT', 'SQL', 'REACT'];
 
   let technicalskillsOptions = ['technical Skill A' , 'technical Skill B'];
 
@@ -62,17 +46,65 @@ const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
 
   let locationOptions=['karachi','lahore','islamabad']
 
-  //console.log(department);
+  const handleSubmit = (event) =>{
+    
+    event.preventDefault();
+    if ( !degrees.length || !employmentCategories.length || !softskills.length || !technicalskills.length || !selectedResponsibilites.length || !perksAndBenefits.length || !experienceLevel.length) {
+      alert('Please fill out all the required fields');
+      return;
+    }
+    
+    let requestData = {
+      "title":jobTitle,
+      "department" :department,
+      "employementCategory":  employmentCategories[0], // ["FULL_TIME","ONLINE"],
+      "gender":  genders , //["MALE","FEMALE"],
+      "traveling": travelling,
+      "location": location,
+      "softSkills":  softskills[0].map(ss=>{return {softSkill:ss} }), 
+      "technicalSkills": technicalskills[0].map(ts=>{return{technicalSkill:ts}}) ,
+      "closeDate": closingDate, //"2023-01-30"
+      "description": description,
+      "responsibilitiess": selectedResponsibilites[0].map(rs=>{return{responsibility:rs}}), 
+      "educations": degrees[0].map(edu=>{return{education:edu}}) ,
+      "benefitPerkss": perksAndBenefits[0].map(pb =>{return{benefitPerks:pb}}),
+      "experienceLevel":experienceLevel,
+      "vacancyCount":vacancies
+    }
+    
+
+    fetch(`http://localhost:8080/job/post`,  {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify( requestData )
+    }
+    ,{
+      mode: 'cors'
+    }
+     )
+      .then(response => response.json())
+      .then(data => {
+          console.log(data);
+          alert("sucessful");
+      })
+      .catch((err)=>{
+          // setError("Server is busy or crediential is invalid");
+    });
+
+
+  }
 
   return (
    
     <div className='mainContainer'>
       <div className="create-job-page" > <h1 className='heading'>CREATE JOB PAGE</h1>
-        <form>
+        <form  onSubmit={handleSubmit} >
         
         <div className='enterjobtitle'>
           <h4 className='heading2'>Job Title</h4>
-          <Textfeild  inputValue={jobTitle} setInputValue={setJobTitle} labelText="title" placeholderText="enter job title" ></Textfeild></div>
+          <Textfeild   data-testid="title-input"   inputValue={jobTitle} setInputValue={setJobTitle} labelText="title" placeholderText="enter job title" ></Textfeild></div>
           <div className='jobdescription'>
           <h4 className='heading3'>Job Description</h4>
          
@@ -85,7 +117,7 @@ const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
           <h4 className='heading4'>Department</h4>
           {/* <DropDownMenu selectedValue={department} setSelectedValue={setDepartment} options={departmentOptions} setOptions={setDepartmentOptions} ></DropDownMenu> */}
         
-          <SimpleDropDown selectedOption={department} setSelectedOption={setDepartment} options={departmentOptions}  ></SimpleDropDown></div>
+          <SimpleDropDown  title="Department" selectedOption={department} setSelectedOption={setDepartment} options={departmentOptions}  ></SimpleDropDown></div>
           <div className="responsibilities">
           <h4 className='heading5'>Responsibilities</h4>
           
@@ -132,13 +164,12 @@ const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
         <SimpleDropDown selectedOption={location} setSelectedOption={setLocation} options={locationOptions}  ></SimpleDropDown></div>
 
 </div>
-        </form>
 
         {/* <button onClick={submitFrom}>submit</button> */}
         <br></br>
         {/* <h4>Responsibilities</h4>
         <ListOfOptions items={responsibilities} setItems={setResponsibilities} options={responsibilityOption} setOptions={setResponsibilityOption}></ListOfOptions>
-        <br></br> */}
+      <br></br> */}
 
         
        
@@ -200,6 +231,7 @@ const[selectedResponsibilites, setSelectedResponsibilities] = useState([]);
 <button className='button' type="button"><a href='#'>
  SUBMIT</a>
 </button>
+        </form>
 
       </div>
       

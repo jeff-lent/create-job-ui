@@ -13,18 +13,15 @@ export const MultiSelectDropDown = ({fetchedOptions,selected,setSelected}) => {
 
 
     function handleSelect(selectedOption){
-        setSelected([...selected, selectedOption]);
+        setSelected([selectedOption]);
     }
 
-    function handleRemove(elementToRemove){
-        //const newArray = selected.filter(element=> element!== elementToRemove);
-        //setSelected(newArray);
-        const myIndex = selected.indexOf(elementToRemove)
-        selected.splice(myIndex,1)
-        setSelected([...selected]);
+    function handleRemove( selectedList, removedItem){
+     
+        setSelected([selectedList]);
+       
     }
 
-   console.log(selected);
 
   return (
     <div>

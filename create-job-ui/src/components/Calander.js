@@ -13,6 +13,7 @@ export const Calander = ({selectedDate,setSelectedDate}) => {
           selected={selectedDate}
           onChange={date => setSelectedDate(date)}
           minDate={new Date()}
+          placeholderText="Closing Date"
         //   isClearable={true}
           showYearDropdown={true}
           scrollableMonthYearDropdown={true}
