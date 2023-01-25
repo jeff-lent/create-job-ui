@@ -96,13 +96,14 @@ export const CreateJobPage = () => {
   return (
     <div className='mainContainer'>
       <div className="create-job-page" ><h1>Create Job Page</h1>
-        <form onSubmit={handleSubmit} >
-        <h4>job title</h4>
-        <Textfeild inputValue={jobTitle} setInputValue={setJobTitle} labelText="title" placeholderText="enter job title" ></Textfeild>
-        <h4>job description</h4>
-        <Textfeild inputValue={description} setInputValue={setDescription} placeholderText="enter job description" ></Textfeild>
-        <br></br>
-        <h4>Department</h4>
+        <form  onSubmit={handleSubmit} >
+          <h4>job title</h4>
+          <Textfeild   data-testid="title-input"  inputValue={jobTitle} setInputValue={setJobTitle} labelText="title" placeholderText="enter job title" ></Textfeild>
+          <h4>job description</h4>
+          <Textfeild inputValue={description} setInputValue={setDescription} placeholderText="enter job description" ></Textfeild>
+          <br></br>
+          <h4>Department</h4>
+          {/* <DropDownMenu selectedValue={department} setSelectedValue={setDepartment} options={departmentOptions} setOptions={setDepartmentOptions} ></DropDownMenu> */}
 
         <SimpleDropDown title="Department" selectedOption={department} setSelectedOption={setDepartment} options={departmentOptions}  ></SimpleDropDown>
 
