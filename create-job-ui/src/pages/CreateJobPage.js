@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import { Calander } from "../components/Calander";
-
 import { MultiSelectDropDown } from "../components/MultiSelectDropDown";
 import { SimpleDropDown } from "../components/SimpleDropDown";
 import { Textfeild } from "../components/Textfeild";
-import "./CreateJobPage.css";
-export const CreateJobPage = () => {
+import styled from "./CreateJobPage.module.css";
+
+const CreateJobPage = () => {
   const [jobTitle, setJobTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [department, setDepartment] = useState("");
+  const [department, setDepartment] = useState(""); // for single drop down
   const [degrees, setDegrees] = useState([]);
   const [employmentCategories, setEmploymentCategories] = useState([]);
-  const [genders, setGenders] = useState("");
-  const [location, setLocation] = useState("");
+  const [genders, setGenders] = useState(""); // for single drop down
+  const [location, setLocation] = useState(""); // for single drop down
   const [softskills, setSoftskills] = useState([]);
   const [technicalskills, setTechnicalskills] = useState([]);
-  const [experienceLevel, setExperienceLevel] = useState([]);
+  const [experienceLevel, setExperienceLevel] = useState(""); // for single drop down
   const [perksAndBenefits, setPerksAndBenefits] = useState([]);
-  const [travelling, setTravelling] = useState([]);
+  const [travelling, setTravelling] = useState(""); // for single drop down
   const [vacancies, setVacancies] = useState();
   const [closingDate, setClosingDate] = useState(null);
   const [selectedResponsibilites, setSelectedResponsibilities] = useState([]);
@@ -145,13 +145,17 @@ export const CreateJobPage = () => {
   };
 
   return (
-    <div className="mainContainer">
-      <div className="create-job-page">
+    <div className={styled.mainContainer}>
+      <div className={styled.create_job_page}>
+        
         {" "}
-        <h1 className="heading">CREATE JOB PAGE</h1>
+        
+        <h1 className={styled.heading}>CREATE JOB PAGE</h1>
+        
         <form onSubmit={handleSubmit}>
-          <div className="enterjobtitle">
-            <h4 className="heading2">Job Title</h4>
+          
+          <div className={styled.enterjobtitle}>
+            <h4 className={styled.heading2}>Job Title</h4>
             <Textfeild
               data-testid="title-input"
               inputValue={jobTitle}
@@ -160,8 +164,9 @@ export const CreateJobPage = () => {
               placeholderText="enter job title"
             ></Textfeild>
           </div>
-          <div className="jobdescription">
-            <h4 className="heading3">Job Description</h4>
+
+          <div className={styled.jobdescription}>
+            <h4 className={styled.heading3}>Job Description</h4>
 
             <Textfeild
               inputValue={description}
@@ -171,9 +176,9 @@ export const CreateJobPage = () => {
           </div>
           <br></br>
 
-          <div className="div2">
-            <div className="dropdown">
-              <h4 className="heading4">Department</h4>
+          <div className={styled.div2}>
+            <div className={styled.dropdown}>
+              <h4 className={styled.heading4}>Department</h4>
 
               <SimpleDropDown
                 title="Department"
@@ -182,8 +187,8 @@ export const CreateJobPage = () => {
                 options={departmentOptions}
               ></SimpleDropDown>
             </div>
-            <div className="responsibilities">
-              <h4 className="heading5">Responsibilities</h4>
+            <div className={styled.responsibilities}>
+              <h4 className={styled.heading5}>Responsibilities</h4>
 
               <MultiSelectDropDown
                 fetchedOptions={responsibilityOptions}
@@ -193,9 +198,9 @@ export const CreateJobPage = () => {
             </div>
           </div>
 
-          <div className="div3">
-            <div className="education">
-              <h4 className="heading6">Degrees/Education</h4>
+          <div className={styled.div3}>
+            <div className={styled.education}>
+              <h4 className={styled.heading6}>Degrees/Education</h4>
 
               <MultiSelectDropDown
                 fetchedOptions={degreeOptions}
@@ -204,8 +209,8 @@ export const CreateJobPage = () => {
               ></MultiSelectDropDown>
             </div>
 
-            <div className="employmentcategory">
-              <h4 className="heading7">Employment Category</h4>
+            <div className={styled.employmentcategory}>
+              <h4 className={styled.heading7}>Employment Category</h4>
 
               <MultiSelectDropDown
                 fetchedOptions={employmentCategoriesOptions}
@@ -215,9 +220,9 @@ export const CreateJobPage = () => {
             </div>
           </div>
           <br></br>
-          <div className="div4">
-            <div className="softskills">
-              <h4 className="heading8">Soft Skills</h4>
+          <div className={styled.div4}>
+            <div className={styled.softskills}>
+              <h4 className={styled.heading8}>Soft Skills</h4>
 
               <MultiSelectDropDown
                 fetchedOptions={softSkillsOptions}
@@ -228,8 +233,8 @@ export const CreateJobPage = () => {
               </MultiSelectDropDown>
             </div>
 
-            <div className="technicalskills">
-              <h4 className="heading9">Technical Skills</h4>
+            <div className={styled.technicalskills}>
+              <h4 className={styled.heading9}>Technical Skills</h4>
 
               <MultiSelectDropDown
                 fetchedOptions={technicalskillsOptions}
@@ -241,9 +246,9 @@ export const CreateJobPage = () => {
             </div>
           </div>
           <br></br>
-          <div className="div5">
-            <div className="perksandbenifits">
-              <h4 className="heading10">Perks and Benifits</h4>
+          <div className={styled.div5}>
+            <div className={styled.perksandbenifits}>
+              <h4 className={styled.heading10}>Perks and Benifits</h4>
 
               <MultiSelectDropDown
                 fetchedOptions={benefitsAndPerksOptions}
@@ -252,8 +257,8 @@ export const CreateJobPage = () => {
               ></MultiSelectDropDown>
             </div>
 
-            <div className="Location">
-              <h4 className="heading11">Location</h4>
+            <div className={styled.Location}>
+              <h4 className={styled.heading11}>Location</h4>
 
               <SimpleDropDown
                 selectedOption={location}
@@ -269,10 +274,10 @@ export const CreateJobPage = () => {
 
           <br></br>
 
-          <section className="form2">
-            <div className="div6">
-              <div className="experience">
-                <h4 className="heading12">Experience</h4>
+          <section className={styled.form2}>
+            <div className={styled.div6}>
+              <div className={styled.experience}>
+                <h4 className={styled.heading12}>Experience</h4>
 
                 <SimpleDropDown
                   selectedOption={experienceLevel}
@@ -280,8 +285,8 @@ export const CreateJobPage = () => {
                   options={experienceLevelOptions}
                 ></SimpleDropDown>
               </div>
-              <div className="vacancies">
-                <h4 className="heading13">No# Vacancies</h4>
+              <div className={styled.vacancies}>
+                <h4 className={styled.heading13}>No# Vacancies</h4>
 
                 <Textfeild
                   inputValue={vacancies}
@@ -291,9 +296,9 @@ export const CreateJobPage = () => {
                 ></Textfeild>
               </div>
             </div>
-            <div className="div7">
-              <div className="gender">
-                <h4 className="heading14">Gender</h4>
+            <div className={styled.div7}>
+              <div className={styled.gender}>
+                <h4 className={styled.heading14}>Gender</h4>
 
                 <SimpleDropDown
                   selectedOption={genders}
@@ -302,8 +307,8 @@ export const CreateJobPage = () => {
                 ></SimpleDropDown>
               </div>
 
-              <div className="requirestravelling">
-                <h4 className="heading15">Requires Travelling</h4>
+              <div className={styled.requirestravelling}>
+                <h4 className={styled.heading15}>Requires Travelling</h4>
 
                 <SimpleDropDown
                   selectedOption={travelling}
@@ -313,15 +318,15 @@ export const CreateJobPage = () => {
               </div>
             </div>
 
-            <div className="closingdate">
-              <h4 className="heading16">Closing date</h4>
+            <div className={styled.closingdate}>
+              <h4 className={styled.heading16}>Closing date</h4>
               <Calander
                 selectedDate={closingDate}
                 setSelectedDate={setClosingDate}
               ></Calander>
             </div>
           </section>
-          <button className="button" onClick={handleSubmit}>
+          <button className={styled.button} onClick={handleSubmit}>
             SUBMIT
           </button>
         </form>
@@ -329,3 +334,5 @@ export const CreateJobPage = () => {
     </div>
   );
 };
+
+export default CreateJobPage;
