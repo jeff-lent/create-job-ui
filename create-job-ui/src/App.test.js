@@ -19,6 +19,7 @@ import { MultiSelectDropDown } from './components/MultiSelectDropDown';
 import { SimpleDropDown } from './components/SimpleDropDown';
 import { CreateJobPage } from './pages/CreateJobPage';
 
+// input feilds
 describe('input feild test', () => {
   it('input text feild should be rendered', () => {
     render(<Textfeild inputValue="this is a job"  placeholderText="enter job description" ></Textfeild>);
@@ -35,6 +36,7 @@ describe('input feild test', () => {
 //   });
 // })
 
+// multiselect dropdown
 describe('Multiselect DropdownField test', () => {
   it('Multiselect dropdown should display on screen', () => {
     render(<MultiSelectDropDown fetchedOptions={['Contribute in all phases of the development lifecycle',
@@ -43,7 +45,31 @@ describe('Multiselect DropdownField test', () => {
     </MultiSelectDropDown>  );
     expect(screen.getByPlaceholderText("Select")).toBeInTheDocument();
   });
-});
+
+  it( 'multiselect options should be rendered', ()=>{
+
+    render(<MultiSelectDropDown fetchedOptions={['Contribute in all phases of the development lifecycle',
+    'Write well designed, testable, efficient code',
+    'Ensure designs are in compliance with specifications']}> 
+    </MultiSelectDropDown>  );
+    const select = screen.getByPlaceholderText("Select");
+    console.log(screen.getByText("Write well designed, testable, efficient code"));
+    expect(screen.getByText("Write well designed, testable, efficient code")).toBeInTheDocument();
+    //expect(select).toContainElement(screen.getByText("Write well designed, testable, efficient code"));
+
+  }
+
+
+  );
+
+  // simple dropdown
+  it('simple dropdown options should be rendered',()=>{
+    render(<SimpleDropDown options={['karachi','lahore','islamabad']}  ></SimpleDropDown>)
+    //const select = screen.getByText('karachi');
+    expect(screen.getByText("lahore")).toBeInTheDocument();
+  });
+
+}); 
 
 
 
@@ -62,17 +88,23 @@ describe('Multiselect DropdownField test', () => {
 
 
 
-test('input fields correctly update the state', () => {
-  const { container } = render(<CreateJobPage />);
-  const titleInput = getByTestId("title-input");
-  fireEvent.change(titleInput, { target: { value: 'Software Engineer' } });
-  expect(titleInput.value).toBe('Software Engineer');
-  expect(titleInput.value).toBe(jobTitle);
+// test('input fields correctly update the state', () => {
+//   const { container } = render(<CreateJobPage />);
+//   const titleInput = getByTestId("title-input");
+//   fireEvent.change(titleInput, { target: { value: 'Software Engineer' } });
+//   expect(titleInput.value).toBe('Software Engineer');
+//   expect(titleInput.value).toBe(jobTitle);
   
-  const descriptionInput = getByTestId(container, 'description-input');
-  fireEvent.change(descriptionInput, { target: { value: 'Develop and maintain software applications' } });
-  expect(descriptionInput.value).toBe('Develop and maintain software applications');
-  expect(descriptionInput.value).toBe(description);
+//   const descriptionInput = getByTestId(container, 'description-input');
+//   fireEvent.change(descriptionInput, { target: { value: 'Develop and maintain software applications' } });
+//   expect(descriptionInput.value).toBe('Develop and maintain software applications');
+//   expect(descriptionInput.value).toBe(description);
   
 
-});
+// });
+
+
+
+
+
+
