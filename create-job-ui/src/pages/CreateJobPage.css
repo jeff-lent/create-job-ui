@@ -10,7 +10,7 @@
     border-radius: 22px;
 }
 .mainContainer{
-    background-color: #d6d6ff;
+    background-color: #216ba5e6;
     display: flex;
     justify-content: center;
 }
@@ -268,9 +268,9 @@ h4.heading16{
       background-color: transparent;
       border-radius: 5px;}
 .form2{
- right: 85px;
- position: relative;
- top: -80px;
+position: relative;
+
+ top: -102px;
 }
 .experience .opt{
     color: #000;
@@ -336,11 +336,11 @@ h1.heading {
 button.button {
     background: #216ba5;
     width: 408px;
-    top: -261px;
+    top: -281px;
     color: white;
     height: 42px;
     position: relative;
-    left: 320px;
+    left: 411px;
     font-size: 17px;
     border: none;
     border-radius: 19px;
