@@ -38,7 +38,7 @@ export const CreateJobPage = () => {
 
   let employmentCategoriesOptions = ['PART_TIME','FULL_TIME','CONTRACT_BASE','ONLINE','ONSITE'];
 
-  let softSkillsOptions = ['soft skill A', 'soft skill B'];
+  let softSkillsOptions = ['JAVA', 'JUNIT', 'SQL', 'REACT'];
 
   let technicalskillsOptions = ['technical Skill A' , 'technical Skill B'];
 
