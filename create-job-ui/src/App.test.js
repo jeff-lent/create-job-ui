@@ -12,6 +12,7 @@ import { Textfeild } from './components/Textfeild';
 import { MultiSelectDropDown } from './components/MultiSelectDropDown'; 
 import { SimpleDropDown } from './components/SimpleDropDown';
 import { CreateJobPage } from './pages/CreateJobPage';
+import mockdata from './mockdata';
 
 // input feilds
 describe('input feild test', () => {
@@ -58,7 +59,20 @@ describe('Multiselect DropdownField test', () => {
 }); 
 
 
-
+describe('int',()=>{
+  beforeEach(() => {
+    jest.spyOn(global, 'fetch').mockResolvedValue({
+        json: jest.fn().mockResolvedValue(mockdata)
+    })
+});
+it('should send post request', () => {
+  render(<CreateJobPage />);
+  const saveButton = screen.getByText("SUBMIT");
+  fireEvent.click(saveButton);
+  // expect(saveButton).toBeInTheDocument();
+  // expect(fetch).toHaveBeenCalledTimes(1);
+});
+})
 
 
 

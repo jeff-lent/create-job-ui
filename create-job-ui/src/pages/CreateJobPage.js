@@ -49,7 +49,10 @@ export const CreateJobPage = () => {
   const handleSubmit = (event) =>{
     
     event.preventDefault();
-
+    if ( !degrees.length || !employmentCategories.length || !softskills.length || !technicalskills.length || !selectedResponsibilites.length || !perksAndBenefits.length || !experienceLevel.length) {
+      alert('Please fill out all the required fields');
+      return;
+    }
     
     let requestData = {
       "title":jobTitle,
