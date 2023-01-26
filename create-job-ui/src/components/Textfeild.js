@@ -7,7 +7,7 @@ export const Textfeild = ({placeholderText,inputValue,setInputValue}   ) => {
           {/* <input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)} /> */}
           <label>
             
-        <input type="text" placeholder={placeholderText}  value={inputValue} onChange={e => setInputValue(e.target.value)} />
+        <input type="text" placeholder={placeholderText}  value={inputValue} onChange={e => setInputValue(e.target.value)} required/>
       </label>
         </div>
       );
